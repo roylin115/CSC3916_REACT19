@@ -14,6 +14,7 @@ function MovieList() {
     const [isSearching, setIsSearching] = useState(false);
 
     const memoizedMovies = useMemo(() => movies, [movies]);
+    const apiUrl = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         dispatch(fetchMovies());
@@ -32,7 +33,7 @@ function MovieList() {
         try {
             const token = localStorage.getItem('token');
 
-            const response = await fetch("http://localhost:8080/search", {
+            const response = await fetch(`${apiUrl}/search`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

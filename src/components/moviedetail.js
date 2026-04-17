@@ -13,6 +13,7 @@ const MovieDetail = () => {
   const error = useSelector(state => state.movie.error); // Assuming you have an error state in your reducer
   const [rating, setRating] = useState('');
   const [reviewText, setReviewText] = useState('');
+  const apiUrl = process.env.REACT_APP_API_URL;
   
 
 
@@ -24,7 +25,7 @@ const MovieDetail = () => {
     try {
       const token = localStorage.getItem("token");
 
-      const response = await fetch("http://localhost:8080/reviews", {
+      const response = await fetch(`${apiUrl}/reviews`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
